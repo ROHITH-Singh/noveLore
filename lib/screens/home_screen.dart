@@ -126,12 +126,14 @@ class _HomeScreenState extends State<HomeScreen> {
           extendBodyBehindAppBar: false,
           backgroundColor: Color(0xff392850),
           appBar: AppBar(
+            brightness: Brightness.light,
             elevation: 0.0,
             backgroundColor: Colors.transparent,
             automaticallyImplyLeading: false,
             title: Row(
               children: [
                 FlatButton(
+                  
                   onPressed: () {
                     if (homechecking == 1) {
                       x = 22;
