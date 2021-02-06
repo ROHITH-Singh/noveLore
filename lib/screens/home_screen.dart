@@ -133,7 +133,6 @@ class _HomeScreenState extends State<HomeScreen> {
             title: Row(
               children: [
                 FlatButton(
-                  
                   onPressed: () {
                     if (homechecking == 1) {
                       x = 22;
@@ -199,7 +198,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 //          );
 
                 //      },
-                
 
                 //       staggeredTileBuilder: (int index) => new StaggeredTile.count(2, index.isEven ? 2:1),
 
@@ -245,10 +243,13 @@ class _HomeScreenState extends State<HomeScreen> {
 
   ReadingListCard listcard1(int index, BuildContext context) {
     {
+      List<String> img = firstlore[index].imgthmp.split("/");
+      String img1 = img[0] + "//" + img[2] + "/public/" + img[3] + "/" + img[4];
+      print(img1);
       print(index);
       return ReadingListCard(
         id: firstlore[index].id,
-        image: firstlore[index].imgthmp,
+        image: img1,
         title: firstlore[index].title,
         author: firstlore[index].author,
         rating: 8.9,
