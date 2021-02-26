@@ -30,7 +30,8 @@ class _SignInState extends State<SignIn> {
         : Scaffold(
             backgroundColor: Color(0xff392850),
             appBar: AppBar(
-              backgroundColor: Colors.brown[400],
+              // backgroundColor: Colors.deepPurpleAccent[100],
+              backgroundColor: Color(0xff392850),
               elevation: 0.0,
               title: Text('Sign in '),
               actions: <Widget>[
