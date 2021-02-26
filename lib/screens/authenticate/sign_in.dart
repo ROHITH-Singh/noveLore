@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:novel/shared/constants.dart';
 import 'package:novel/shared/loading.dart';
 
+import '../wrapper.dart';
+
 class SignIn extends StatefulWidget {
   final Function toggleView;
   SignIn({this.toggleView});
@@ -84,6 +86,8 @@ class _SignInState extends State<SignIn> {
                                 error =
                                     'Could not sign in with those credentials';
                               });
+                            } else {
+                              return Wrapper();
                             }
                           }
                         }),

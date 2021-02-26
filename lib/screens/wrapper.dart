@@ -11,9 +11,18 @@ class Wrapper extends StatelessWidget {
 
     // return either the Home or Authenticate widget
     if (user == null) {
+      print("hello");
+      print(user);
       return Authenticate();
     } else {
-      return Home();
+      return ProfilePage();
     }
+  }
+}
+
+class ProfilePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    Container();
   }
 }
