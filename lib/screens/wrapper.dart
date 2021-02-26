@@ -1,8 +1,12 @@
+import 'package:animated_theme_switcher/animated_theme_switcher.dart';
+import 'package:novel/Profilescreen.dart';
 import 'package:novel/screens/home/home.dart';
 import 'package:novel/screens/authenticate/authenticate.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:novel/models/user.dart';
+
+import '../constants.dart';
 
 class Wrapper extends StatelessWidget {
   @override
@@ -15,14 +19,17 @@ class Wrapper extends StatelessWidget {
       print(user);
       return Authenticate();
     } else {
-      return ProfilePage();
+      print(user.uid);
+      
+      return ThemeProvider(
+          initTheme: kDarkTheme,
+          child: Builder(builder: (context) {
+            return MaterialApp(
+              debugShowCheckedModeBanner: false,
+              theme: ThemeProvider.of(context),
+              home: ProfileScreen(),
+            );
+          }));
     }
-  }
-}
-
-class ProfilePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    Container();
   }
 }

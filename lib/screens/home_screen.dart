@@ -12,7 +12,8 @@ import 'package:flutter/rendering.dart';
 import 'package:novel/consttants.dart';
 import 'package:novel/models/FirstData.dart';
 import 'package:novel/screens/favourite.dart';
-import 'package:novel/screens/profile.dart';
+import 'package:novel/screens/ProfileScreen.dart';
+import 'package:novel/screens/wrapper.dart';
 import 'package:novel/screens/write.dart';
 
 import 'package:novel/widgets/HomeScreenwidget.dart';
@@ -98,7 +99,7 @@ class _HomeScreenState extends State<HomeScreen> {
       case 3:
         setState(() => Navigator.of(context)
                 .push(MaterialPageRoute<Null>(builder: (BuildContext context) {
-              return new profile();
+              return new Wrapper();
             })));
         break;
 
