@@ -62,8 +62,10 @@ class _DetailScreenState extends State<DetailScreen> {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     // print("second lore  $secondlore $clength");
-
+    
     if (clength != null) {
+       List<String> img = secondlore[0].imgthmp.split("/");
+       String img1 = img[0] + "//" + img[2] + "/public/" + img[3] + "/" + img[4];
       print("$clength");
       return Scaffold(
         body: SingleChildScrollView(
@@ -95,10 +97,11 @@ class _DetailScreenState extends State<DetailScreen> {
                           SizedBox(
                             height: size.height * .08,
                           ),
+                         
                           detailpagecard1(
                               context,
                               secondlore[0].id,
-                              secondlore[0].imgthmp,
+                              img1,
                               secondlore[0].title,
                               secondlore[0].author,
                               secondlore[0].description),
@@ -121,7 +124,7 @@ class _DetailScreenState extends State<DetailScreen> {
       return AnimatedSplashScreen(
          nextScreen: DetailScreen(id: widget.id),
          
-        splash: Image.asset("assets/images/emotion.jpg"),
+        splash: Image.asset("assets/images/emotion.png"),
         splashTransition: SplashTransition.rotationTransition,
         // duration: 7000,
         backgroundColor: Color(0xff392850),

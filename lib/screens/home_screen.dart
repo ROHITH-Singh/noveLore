@@ -234,9 +234,9 @@ class _HomeScreenState extends State<HomeScreen> {
     }
     return AnimatedSplashScreen(
       nextScreen: HomeScreen(),
-      splash: Image.asset("assets/images/emotion.jpg"),
-      splashTransition: SplashTransition.fadeTransition,
-      duration: 7000,
+      splash: Image.asset("assets/images/emotion.png"),
+      splashTransition: SplashTransition.rotationTransition,
+      duration: 5000,
       backgroundColor: Color(0xff392850),
     );
   }
