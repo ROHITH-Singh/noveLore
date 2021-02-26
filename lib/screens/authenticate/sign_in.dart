@@ -28,7 +28,7 @@ class _SignInState extends State<SignIn> {
     return loading
         ? Loading()
         : Scaffold(
-            backgroundColor: Colors.brown[100],
+            backgroundColor: Color(0xff392850),
             appBar: AppBar(
               backgroundColor: Colors.brown[400],
               elevation: 0.0,

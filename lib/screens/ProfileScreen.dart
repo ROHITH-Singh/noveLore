@@ -1,7 +1,8 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:novel/Profilescreen.dart';
+import 'package:novel/screens/home/home.dart';
+import 'package:novel/screens/home_screen.dart';
 import 'package:novel/screens/wrapper.dart';
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:flutter/cupertino.dart';
@@ -13,13 +14,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../constants.dart';
 
+class ProfileScreen extends StatefulWidget {
+  @override
+  _ProfileScreenState createState() => _ProfileScreenState();
+}
 
-
-
-
-
-
-class ProfileScreen extends StatelessWidget {
+class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     ScreenUtil.init(context, height: 896, width: 414, allowFontScaling: true);
 
@@ -46,14 +46,15 @@ class ProfileScreen extends StatelessWidget {
                       shape: BoxShape.circle,
                     ),
                     child: Center(
-                      heightFactor: kSpacingUnit.w * 1.5,
-                      widthFactor: kSpacingUnit.w * 1.5,
-                      child: Icon(
-                        LineAwesomeIcons.pen,
-                        color: kDarkPrimaryColor,
-                        size: ScreenUtil().setSp(kSpacingUnit.w * 1.5),
-                      ),
-                    ),
+                        heightFactor: kSpacingUnit.w * 1.5,
+                        widthFactor: kSpacingUnit.w * 1.5,
+                        child: GestureDetector(
+                          child: Icon(
+                            LineAwesomeIcons.pen,
+                            color: kDarkPrimaryColor,
+                            size: ScreenUtil().setSp(kSpacingUnit.w * 1.5),
+                          ),
+                        )),
                   ),
                 ),
               ],
@@ -121,9 +122,19 @@ class ProfileScreen extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         SizedBox(width: kSpacingUnit.w * 3),
-        Icon(
-          LineAwesomeIcons.arrow_left,
-          size: ScreenUtil().setSp(kSpacingUnit.w * 3),
+        GestureDetector(
+          
+          child: Icon(
+            LineAwesomeIcons.arrow_left,
+            size: ScreenUtil().setSp(kSpacingUnit.w * 3),
+          ),
+          onTap: () {
+          setState(() => Navigator.of(context)
+                .push(MaterialPageRoute<Null>(builder: (BuildContext context) {
+              return new HomeScreen();
+            })));
+             
+          },
         ),
         profileInfo,
         themeSwitcher,

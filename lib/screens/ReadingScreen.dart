@@ -73,7 +73,7 @@ class _ReadingScreenState extends State<ReadingScreen> {
       );
     } else {
       return AnimatedSplashScreen(
-        splash: Image.asset("assets/images/emotion.jpg"),
+        splash: Image.asset("assets/images/emotion.png"),
         splashTransition: SplashTransition.rotationTransition,
         nextScreen: ReadingScreen(id: widget.id,index: widget.index,),
         duration: 7000,

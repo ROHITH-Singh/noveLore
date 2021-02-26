@@ -37,9 +37,11 @@ class ProfileScreen extends StatelessWidget {
                       heightFactor: kSpacingUnit.w * 1.5,
                       widthFactor: kSpacingUnit.w * 1.5,
                       child: Icon(
+                        
                         LineAwesomeIcons.pen,
                         color: kDarkPrimaryColor,
                         size: ScreenUtil().setSp(kSpacingUnit.w * 1.5),
+                        
                       ),
                     ),
                   ),
@@ -49,12 +51,12 @@ class ProfileScreen extends StatelessWidget {
           ),
           SizedBox(height: kSpacingUnit.w * 2),
           Text(
-            'Nicolas Adams',
+            'USER NAME',
             style: kTitleTextStyle,
           ),
           SizedBox(height: kSpacingUnit.w * 0.5),
           Text(
-            'nicolasadams@gmail.com',
+            'CV<EKyAHUA@gmail.com',
             style: kCaptionTextStyle,
           ),
           SizedBox(height: kSpacingUnit.w * 2),

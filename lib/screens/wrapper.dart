@@ -1,4 +1,5 @@
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:novel/Profilescreen.dart';
 import 'package:novel/screens/home/home.dart';
 import 'package:novel/screens/authenticate/authenticate.dart';
@@ -19,7 +20,7 @@ class Wrapper extends StatelessWidget {
       print(user);
       return Authenticate();
     } else {
-      print(user.uid);
+      String uid = user.uid;
       
       return ThemeProvider(
           initTheme: kDarkTheme,
