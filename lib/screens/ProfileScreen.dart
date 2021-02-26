@@ -129,7 +129,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             size: ScreenUtil().setSp(kSpacingUnit.w * 3),
           ),
           onTap: () {
-          setState(() => Navigator.of(context)
+              setState(() => Navigator.of(context)
                 .push(MaterialPageRoute<Null>(builder: (BuildContext context) {
               return new HomeScreen();
             })));

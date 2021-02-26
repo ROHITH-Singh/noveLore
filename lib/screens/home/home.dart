@@ -12,23 +12,24 @@ class Home extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Novel Core',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        scaffoldBackgroundColor: Colors.white,
-        textTheme: Theme.of(context).textTheme.apply(displayColor: kBlackcolor),
-        // This makes the visual density adapt to the platform that you run
-        // the app on. For desktop platforms, the controls will be smaller and
-        // closer together (more dense) than on mobile platforms.
-        visualDensity: VisualDensity.adaptivePlatformDensity,
+        brightness: Brightness.light,
       ),
+      darkTheme: ThemeData(brightness: Brightness.dark),
+      // This is the theme of your application.
+      //
+      // Try running your application with "flutter run". You'll see the
+      // application has a blue toolbar. Then, without quitting the app, try
+      // changing the primarySwatch below to Colors.green and then invoke
+      // "hot reload" (press "r" in the console where you ran "flutter run",
+      // or simply save your changes to "hot reload" in a Flutter IDE).
+      // Notice that the counter didn't reset back to zero; the application
+      // is not restarted.
+      themeMode: ThemeMode.dark,
       home: WelcomeScreen(),
+      // This makes the visual density adapt to the platform that you run
+      // the app on. For desktop platforms, the controls will be smaller and
+      // closer together (more dense) than on mobile platforms.
+      // visualDensity: VisualDensity.adaptivePlatformDensity,
     );
   }
 }
@@ -95,45 +96,39 @@ class WelcomeScreen extends StatelessWidget {
           ),
         ),
       ),
-      onWillPop: (){
-        return showDialog(context: context,builder: (context)=>AlertDialog(
-           backgroundColor: Colors.amberAccent[100],
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(40)),
-                    ),
-                    title: Text(
-                      " do u wanna exit nadded to library",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 20,
-                        color: Color(0xff392850),
-                      ),
-                    ),
-                    actions:<Widget> [
-                      FlatButton(
-                        child:Text('no'),
-                        onPressed: () {
-                          Navigator.pop(context,false);
-                        },
-                        
-                      ),
-                      FlatButton(
-                        child:Text('Yes'),
-                        onPressed: () {
-                          Navigator.pop(context,true);
-                        },
-                        
-                      ),
-
-
-                    ],
-
-        ),
+      onWillPop: () {
+        return showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            backgroundColor: Colors.amberAccent[100],
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(40)),
+            ),
+            title: Text(
+              " do u wanna exit nadded to library",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 20,
+                color: Color(0xff392850),
+              ),
+            ),
+            actions: <Widget>[
+              FlatButton(
+                child: Text('no'),
+                onPressed: () {
+                  Navigator.pop(context, false);
+                },
+              ),
+              FlatButton(
+                child: Text('Yes'),
+                onPressed: () {
+                  Navigator.pop(context, true);
+                },
+              ),
+            ],
+          ),
         );
-    
-
       },
-      
     );
   }
 }
