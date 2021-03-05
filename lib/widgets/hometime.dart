@@ -26,7 +26,7 @@ class Hometime extends StatefulWidget {
 
 class _HometimeState extends State<Hometime> {
   bool onliked = false;
-  var color = Colors.white;
+  Color color = Colors.white;
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
@@ -51,7 +51,6 @@ class _HometimeState extends State<Hometime> {
                 color: color,
               ),
               onPressed: () {
-               
                 return showDialog(
                   context: context,
                   builder: (ctx) => AlertDialog(
@@ -70,7 +69,11 @@ class _HometimeState extends State<Hometime> {
                     actions: [
                       FlatButton(
                         onPressed: () {
+                          setState(() {
+                            onliked = !onliked;
                           Navigator.of(ctx).pop();
+                          });
+                          
                         },
                         child: Text("ok"),
                       ),
