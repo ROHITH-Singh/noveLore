@@ -55,50 +55,79 @@ class _ReadingScreenState extends State<ReadingScreen> {
     });
   }
 
+  ThemeData _lightTheme = ThemeData(
+      accentColor: Colors.pink,
+      brightness: Brightness.light,
+      primaryColor: Colors.blue);
+
+  ThemeData _darktheme = ThemeData.from(
+    colorScheme: ColorScheme(
+        primary: Color(0xff272727),
+        primaryVariant: Color(0xff000000),
+        secondary: Color(0xff66fff9),
+        secondaryVariant: Color(0xff66fff9),
+        surface: Color(0xff003366),
+        background: Color(0xff160c16),
+        error: Color(0xff9b374d),
+        onPrimary: Colors.black,
+        onSecondary: Colors.white,
+        onSurface: Colors.black,
+        onBackground: Colors.white,
+        onError: Colors.black,
+        brightness: Brightness.dark),
+  );
+// (
+//     accentColor: Colors.black,
+//     brightness: Brightness.dark,
+//     primaryColor: Colors.black);
+
+  bool _light = true;
+  Color x = Colors.white70;
+  Color y = Colors.transparent;
   @override
   Widget build(BuildContext context) {
-    var x = Colors.white;
-    var y = Colors.black;
-    var t;
-    var z = 0;
-
     if (length != null) {
-      return Center(
-          child: ListView(
-        children: [
-          // Container(
-          //   alignment: new Alignment(0.9, 0.9),
-          //   color: Colors.white,
-          //   child: GestureDetector(
-          //     onTap: () {},
-          //     child: Icon(
-          //       Icons.brightness_4,
-          //       color: y,
-          //       size: 40,
-          //     ),
-          //   ),
-          // ),
-          Container(
-            // padding: const EdgeInsets.symmetric(
-            //   horizontal: 5,
-            //   vertical: 50,
-            // ),
-            color: x,
-            child: SingleChildScrollView(
-              scrollDirection: Axis.vertical,
-              child: Text(
-                content,
-                textAlign: TextAlign.left,
-                style: TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.w400,
-                    color: y,
-                    decoration: TextDecoration.none),
+      return MaterialApp(
+        theme: _light ? _darktheme : _lightTheme,
+        home: Scaffold(
+          // floatingActionButtonLocation: FloatingActionButtonLocation.miniEndTop,
+            floatingActionButton: FloatingActionButton( 
+              backgroundColor: x,
+              onPressed: () {
+                setState(() {
+                  _light = !_light;
+                  if (_light)
+                    x = Colors.white70;
+                  else
+                    x = Color(0xff392850);
+                });
+              },
+              child: Icon(
+                Icons.brightness_4,
+                size: 24,
               ),
             ),
-          )
-        ],
-      ));
+            body: Center(
+                child: SingleChildScrollView(
+                    child: Column(
+              children: [
+                Padding(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 10, vertical: 30)),
+                SingleChildScrollView(
+                  scrollDirection: Axis.vertical,
+                  child: Text(
+                    content,
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w400,
+                        decoration: TextDecoration.none),
+                  ),
+                ),
+              ],
+            )))),
+      );
     } else {
       return AnimatedSplashScreen(
         splash: Image.asset("assets/images/emotion.png"),
