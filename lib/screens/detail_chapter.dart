@@ -33,12 +33,16 @@ class _DetailScreenState extends State<DetailScreen> {
   }
 
   Future<List<SecondData>> _getrequest() async {
-    String Url = "https://noveloreapi.herokuapp.com/second/" + widget.id;
-    String Url1 =
-        "https://noveloreapi.herokuapp.com/second/" + widget.id + "/size";
-    print(Url1);
-    Response response = await http.get(Uri.encodeFull(Url));
-    Response response1 = await http.get(Uri.encodeFull(Url1));
+    // String Url = "https://noveloreapi.herokuapp.com/second/" + widget.id;
+    var url = Uri.https(
+        'noveloreapi.herokuapp.com', '/second/' + widget.id, {'q': '{http}'});
+    // String Url1 =
+    //     "https://noveloreapi.herokuapp.com/second/" + widget.id + "/size";
+        var url1= Uri.https(
+        'noveloreapi.herokuapp.com', '/second/' + widget.id+'/size', {'q': '{http}'});
+    print(url1);
+    Response response = await http.get(url);
+    Response response1 = await http.get((url1));
     var rb = response.body;
     var rb1 = response1.body;
 
@@ -62,10 +66,10 @@ class _DetailScreenState extends State<DetailScreen> {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     // print("second lore  $secondlore $clength");
-    
+
     if (clength != null) {
-       List<String> img = secondlore[0].imgthmp.split("/");
-       String img1 = img[0] + "//" + img[2] + "/public/" + img[3] + "/" + img[4];
+      List<String> img = secondlore[0].imgthmp.split("/");
+      String img1 = img[0] + "//" + img[2] + "/public/" + img[3] + "/" + img[4];
       print("$clength");
       return Scaffold(
         body: SingleChildScrollView(
@@ -97,7 +101,6 @@ class _DetailScreenState extends State<DetailScreen> {
                           SizedBox(
                             height: size.height * .08,
                           ),
-                         
                           detailpagecard1(
                               context,
                               secondlore[0].id,
@@ -122,8 +125,8 @@ class _DetailScreenState extends State<DetailScreen> {
       );
     } else {
       return AnimatedSplashScreen(
-         nextScreen: DetailScreen(id: widget.id),
-         
+        nextScreen: DetailScreen(id: widget.id),
+
         splash: Image.asset("assets/images/emotion.png"),
         splashTransition: SplashTransition.rotationTransition,
         // duration: 7000,

@@ -1,16 +1,16 @@
 import 'dart:convert';
 
 import 'package:animated_splash_screen/animated_splash_screen.dart';
-import 'package:animated_theme_switcher/animated_theme_switcher.dart';
+// import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/screenutil.dart';
+// import 'package:flutter_screenutil/screenutil.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
-import 'package:line_awesome_flutter/line_awesome_flutter.dart';
+// import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:novel/models/ContentData.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../constants.dart';
+// import 'package:flutter_screenutil/flutter_screenutil.dart';
+// import '../constants.dart';
 
 class ReadingScreen extends StatefulWidget {
   final String id;
@@ -38,8 +38,9 @@ class _ReadingScreenState extends State<ReadingScreen> {
         "/" +
         widget.index.toString();
     print(Url);
-
-    Response response = await http.get(Uri.encodeFull(Url));
+  var url = Uri.https(
+        'noveloreapi.herokuapp.com', '/chapter/' + widget.id+'/'+widget.index.toString(), {'q': '{http}'});
+    Response response = await http.get((url));
 
     var rb = response.body;
 

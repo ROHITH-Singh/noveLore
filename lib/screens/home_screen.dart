@@ -1,28 +1,27 @@
 // import 'dart:html';
 import 'dart:convert';
-import 'dart:ffi';
+// import 'dart:ffi';
 import 'dart:math';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+// import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:http/http.dart';
 import 'dart:ui';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart ';
 import 'package:flutter/rendering.dart';
-import 'package:novel/consttants.dart';
+// import 'package:novel/consttants.dart';
 import 'package:novel/models/FirstData.dart';
 import 'package:novel/screens/favourite.dart';
-import 'package:novel/screens/ProfileScreen.dart';
-import 'package:novel/screens/wrapper.dart';
+
 import 'package:novel/screens/write.dart';
 
-import 'package:novel/widgets/HomeScreenwidget.dart';
-import 'package:novel/widgets/ReadingListCardsmallerversion.dart';
-import 'package:novel/widgets/book_ratings.dart';
-import 'package:novel/widgets/boxsimplewithreadandimage.dart';
-import 'package:novel/widgets/justbottomimage.dart';
-import 'package:novel/widgets/read_button.dart';
-import 'package:novel/widgets/readinglistcard1.dart';
+// import 'package:novel/widgets/HomeScreenwidget.dart';
+// import 'package:novel/widgets/ReadingListCardsmallerversion.dart';
+// import 'package:novel/widgets/book_ratings.dart';
+// import 'package:novel/widgets/boxsimplewithreadandimage.dart';
+// import 'package:novel/widgets/justbottomimage.dart';
+// import 'package:novel/widgets/read_button.dart';
+// import 'package:novel/widgets/readinglistcard1.dart';
 import 'package:novel/widgets/title_author_read.dart';
 
 import 'detail_chapter.dart';
@@ -37,7 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
   bool _visible = true;
   String text = "Home";
   String url = "https://noveloreapi.herokuapp.com/first ";
-  List<FirstData> firstlore = new List();
+  List<FirstData> firstlore = [];
   int firstlength;
   bool widget1 = false;
 
@@ -60,8 +59,10 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future<List<FirstData>> _getrequest() async {
-    String Url = "https://noveloreapi.herokuapp.com/first";
-    Response response = await http.get(Uri.encodeFull(Url));
+    // String Url = "https://noveloreapi.herokuapp.com/first";
+    var url =
+        Uri.https('noveloreapi.herokuapp.com', '/first/', {'q': '{http}'});
+    Response response = await http.get((url));
     try {
       var rb = response.body;
       print(rb);
@@ -99,7 +100,7 @@ class _HomeScreenState extends State<HomeScreen> {
       case 3:
         setState(() => Navigator.of(context)
                 .push(MaterialPageRoute<Null>(builder: (BuildContext context) {
-              return new Wrapper();
+              return new HomeScreen();
             })));
         break;
 
@@ -133,7 +134,7 @@ class _HomeScreenState extends State<HomeScreen> {
             automaticallyImplyLeading: false,
             title: Row(
               children: [
-                FlatButton(
+                TextButton(
                   onPressed: () {
                     if (homechecking == 1) {
                       x = 22;
@@ -154,7 +155,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           fontSize: x,
                           fontWeight: FontWeight.w900)),
                 ),
-                FlatButton(
+                TextButton(
                   onPressed: () {
                     if (homechecking == 0) {
                       x = 15;
@@ -168,7 +169,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       );
                     }
                   },
-                  child: Text("Search",
+                  child: Text("  Search",
                       style: TextStyle(
                           color: Colors.white54,
                           fontSize: y,
@@ -249,6 +250,7 @@ class _HomeScreenState extends State<HomeScreen> {
       print(img1);
       print(index);
       return ReadingListCard(
+      
         id: firstlore[index].id,
         image: img1,
         title: firstlore[index].title,
@@ -278,22 +280,16 @@ class _HomeScreenState extends State<HomeScreen> {
         elevation: 20,
         type: BottomNavigationBarType.fixed,
         items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            title: Text("Home"),
-          ),
+              icon: Icon(Icons.favorite), label: "Favorite"),
+
           BottomNavigationBarItem(
-            icon: Icon(Icons.favorite),
-            title: Text("Favorite"),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.border_color),
-            title: Text("write"),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            title: Text("Profile"),
-          ),
+              icon: Icon(Icons.border_color), label: "write"),
+
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
+
           // BottomNavigationBarItem(
           //   icon: Icon(Icons.settings),
           //   title: Text("Settings"),
@@ -314,7 +310,7 @@ class _HomeScreenState extends State<HomeScreen> {
         automaticallyImplyLeading: false,
         title: Row(
           children: [
-            FlatButton(
+            TextButton(
               onPressed: () {
                 if (homechecking == 1) {
                   x = 22;
@@ -335,7 +331,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       fontSize: x,
                       fontWeight: FontWeight.w900)),
             ),
-            FlatButton(
+            TextButton(
               onPressed: () {
                 if (homechecking == 0) {
                   x = 15;
@@ -349,12 +345,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   );
                 }
               },
-              child: Text("Search",
+              child: Text(" Search",
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: y,
                       fontWeight: FontWeight.w900)),
-            )
+            ),
           ],
         ),
         actions: [],

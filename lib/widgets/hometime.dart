@@ -10,7 +10,7 @@ class Hometime extends StatefulWidget {
   final double rating;
   final Function pressRead;
 
-  const Hometime({
+  Hometime({
     Key key,
     this.id,
     this.image,
@@ -27,8 +27,12 @@ class Hometime extends StatefulWidget {
 class _HometimeState extends State<Hometime> {
   bool onliked = false;
   Color color = Colors.white;
+  GlobalKey _globalKey = GlobalKey();
+  // final List<GlobalObjectKey<FormState>> _globalKey =
+  //     List.generate(10, (index) => GlobalObjectKey > (index));
   Widget build(BuildContext context) {
     return GestureDetector(
+       key: _globalKey,
       onTap: () {
         setState(() {
           onliked = !onliked;
@@ -52,7 +56,7 @@ class _HometimeState extends State<Hometime> {
               ),
               onPressed: () {
                 return showDialog(
-                  context: context,
+                  context: _globalKey.currentContext,
                   builder: (ctx) => AlertDialog(
                     backgroundColor: Colors.amberAccent[100],
                     shape: RoundedRectangleBorder(
@@ -67,13 +71,12 @@ class _HometimeState extends State<Hometime> {
                       ),
                     ),
                     actions: [
-                      FlatButton(
+                      TextButton(
                         onPressed: () {
                           setState(() {
                             onliked = !onliked;
-                          Navigator.of(ctx).pop();
+                            Navigator.of(ctx).pop();
                           });
-                          
                         },
                         child: Text("ok"),
                       ),

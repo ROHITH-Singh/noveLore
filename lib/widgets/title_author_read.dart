@@ -2,10 +2,10 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart ';
 import 'package:novel/consttants.dart';
-import 'package:novel/widgets/book_ratings.dart';
+// import 'package:novel/widgets/book_ratings.dart';
 import 'package:novel/widgets/hometime.dart';
-import 'package:novel/widgets/read_button.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+// import 'package:novel/widgets/read_button.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
 
 class ReadingListCard extends StatefulWidget {
   final String id;
@@ -14,8 +14,10 @@ class ReadingListCard extends StatefulWidget {
   final String author;
   final double rating;
   final Function pressRead;
-
-  const ReadingListCard({
+  
+  @override
+ 
+   ReadingListCard({
     Key key,
     this.id,
     this.image,
@@ -36,7 +38,9 @@ class _ReadingListCardState extends State<ReadingListCard> {
   Widget build(BuildContext context) {
     bool onliked = false;
     var IconColor = Colors.white;
-    return GestureDetector(
+    
+        return GestureDetector(
+         
         onTap: widget.pressRead,
         child: Container(
           margin: EdgeInsets.only(bottom: 30, left: 15, top: 5, right: 0),
