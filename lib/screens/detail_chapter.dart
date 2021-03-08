@@ -72,6 +72,8 @@ class _DetailScreenState extends State<DetailScreen> {
       String img1 = img[0] + "//" + img[2] + "/public/" + img[3] + "/" + img[4];
       print("$clength");
       return Scaffold(
+        
+        
         body: SingleChildScrollView(
           child: Column(
             children: [
@@ -79,9 +81,14 @@ class _DetailScreenState extends State<DetailScreen> {
                 alignment: Alignment.topCenter,
                 children: [
                   Container(
-                    height: size.height * .4,
+                    
+                    height: size.height * .53,
                     width: double.infinity,
                     decoration: BoxDecoration(
+                      
+                      image: DecorationImage(image: NetworkImage(img1),fit: BoxFit.fill,
+                      colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.7), BlendMode.dstOut)
+                      ),
                       gradient: LinearGradient(
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,

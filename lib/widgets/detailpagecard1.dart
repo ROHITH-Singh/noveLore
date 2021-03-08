@@ -27,7 +27,7 @@ Row detailpagecard1(BuildContext context,String id,
 
 
 
-      return Row(
+      return  Row(
                            
                             children: [
                               Expanded(
@@ -52,10 +52,12 @@ Row detailpagecard1(BuildContext context,String id,
                                               Text(
                                                  description1,
                                                 style: TextStyle(
-                                                    fontSize: 8,
+                                                    fontSize: 9,
                                                     color: kBlackcolor),
-                                                maxLines: 15,
+                                                maxLines: 16,
                                               ),
+
+
                                               SizedBox(
                                                 height: 5,
                                               ),

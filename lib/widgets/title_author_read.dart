@@ -43,18 +43,21 @@ class _ReadingListCardState extends State<ReadingListCard> {
          
         onTap: widget.pressRead,
         child: Container(
-          margin: EdgeInsets.only(bottom: 30, left: 15, top: 5, right: 0),
-          height: 310,
-          width: 180,
+          height:MediaQuery.of((context)).size.height /4 ,
+          margin: EdgeInsets.only(bottom: 20, left: 5, top: 0, right: 5),
+        
+        
           child: Stack(
+            
+            fit:StackFit.loose,
             children: [
               Positioned(
-                
-                bottom: 0,
-                left: 0,
-                right: 0,
                 child: Container(
-                  height: 300,
+                  alignment: Alignment.topCenter,
+                  
+                  height: MediaQuery.of((context)).size.height /2  ,
+                  
+                  
                   decoration: BoxDecoration(
                     image: DecorationImage(
                       image: NetworkImage(widget.image),
@@ -66,7 +69,7 @@ class _ReadingListCardState extends State<ReadingListCard> {
                     boxShadow: [
                       BoxShadow(
                         offset: Offset(2, 8),
-                        blurRadius: 15,
+                        blurRadius: 20,
                         color: kShadowcolor1,
                       ),
                     ],
@@ -80,26 +83,28 @@ class _ReadingListCardState extends State<ReadingListCard> {
                   children: [
                     Container(
                       child: Hometime(id: widget.id,title: widget.title,author: widget.author,image: widget.image,),
-                    ),
+                    )
                     
                   ],
                 ),
               ),
                   Positioned(
-                top: 220,
+                    left: 5,
+                top: 50,
                 child: Container(
-                  height: 100,
-                  width: 180,
+                  alignment: Alignment(0,3),
+                  height: 200,
+                  width: 100,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Padding(
-                        padding: EdgeInsets.only(left: 2),
+                      SizedBox(
+                        // padding: EdgeInsets.only(left: 2),
                         child: RichText(
                           textAlign: TextAlign.center,
                           text: TextSpan(
                             style: TextStyle(
-                                color: Color.fromRGBO(255, 255, 184, 1)),
+                                color: Color.fromRGBO(255, 255, 255, 1)),
                             children: [
                               TextSpan(
                                 text: " ${widget.title}\n",

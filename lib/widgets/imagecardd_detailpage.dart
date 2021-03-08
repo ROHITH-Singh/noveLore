@@ -16,9 +16,9 @@ class ImageCard1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(bottom: 20, left: 10, top: 3, right: 5),
-      height: 210,
-      width: 140,
+      margin: EdgeInsets.only(bottom: 20, left: 0, top: 3, right: 5),
+      height: 260,
+      width: 150,
       child: Stack(
         children: [
           Positioned(

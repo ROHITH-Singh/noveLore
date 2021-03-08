@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'dart:math';
 // import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
+import 'package:flutter/services.dart';
 import 'package:http/http.dart';
 import 'dart:ui';
 import 'package:http/http.dart' as http;
@@ -11,6 +12,7 @@ import 'package:flutter/material.dart ';
 import 'package:flutter/rendering.dart';
 // import 'package:novel/consttants.dart';
 import 'package:novel/models/FirstData.dart';
+import 'package:novel/screens/ProfilePage.dart';
 import 'package:novel/screens/favourite.dart';
 
 import 'package:novel/screens/write.dart';
@@ -122,10 +124,8 @@ class _HomeScreenState extends State<HomeScreen> {
       case 3:
         setState(() => Navigator.of(context)
                 .push(MaterialPageRoute<Null>(builder: (BuildContext context) {
-              return new HomeScreen(
-                x: true,
-                saved: firstlore,
-              );
+              return new ProfilePage();
+              // );
             })));
         break;
 
@@ -170,9 +170,12 @@ class _HomeScreenState extends State<HomeScreen> {
           r = rnd.nextInt(max - min);
         },
         child: Scaffold(
-          extendBodyBehindAppBar: false,
-          backgroundColor: Color(0xff392850),
-          appBar: AppBar(
+          extendBodyBehindAppBar: true,
+        //  ,  
+        backgroundColor: Color(0xff392850),
+          
+          
+          appBar: !_visible?new AppBar(backgroundColor:Colors.transparent , elevation: 0.0,) : AppBar(
             brightness: Brightness.light,
             elevation: 0.0,
             backgroundColor: Colors.transparent,
@@ -226,7 +229,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           body: Container(
             width: double.infinity,
-
+            padding: EdgeInsets.symmetric(horizontal: 10),
             //  /height: 500,
             child: GridView.builder(
                 itemCount: firstlength,
@@ -234,8 +237,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 controller: _scrollController,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount:
-                        (orientation == Orientation.portrait) ? 2 : 3,
-                    childAspectRatio: 0.55),
+                        (orientation == Orientation.portrait) ? 3 : 6,
+                    childAspectRatio: 0.58),
                 itemBuilder: (context, index) {
                   if (index != null) {
                     return Container(
@@ -296,15 +299,15 @@ class _HomeScreenState extends State<HomeScreen> {
         elevation: 20,
         type: BottomNavigationBarType.fixed,
         items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+          BottomNavigationBarItem(icon: Icon(Icons.home,size: 40,), label: "Home"),
 
           BottomNavigationBarItem(
-              icon: Icon(Icons.favorite), label: "Favorite"),
+              icon: Icon(Icons.favorite,size: 40,), label: "Favorite"),
 
           BottomNavigationBarItem(
-              icon: Icon(Icons.border_color), label: "write"),
+              icon: Icon(Icons.border_color,size: 40,), label: "write"),
 
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
+          BottomNavigationBarItem(icon: Icon(Icons.person,size: 40,), label: "Profile"),
 
           // BottomNavigationBarItem(
           //   icon: Icon(Icons.settings),
