@@ -14,6 +14,7 @@ import 'package:novel/models/FirstData.dart';
 import 'package:novel/screens/favourite.dart';
 
 import 'package:novel/screens/write.dart';
+import 'package:novel/widgets/hometime.dart';
 
 // import 'package:novel/widgets/HomeScreenwidget.dart';
 // import 'package:novel/widgets/ReadingListCardsmallerversion.dart';
@@ -27,21 +28,32 @@ import 'package:novel/widgets/title_author_read.dart';
 import 'detail_chapter.dart';
 
 class HomeScreen extends StatefulWidget {
+  bool x;
+  List<FirstData> saved;
+
   @override
+  HomeScreen({Key key, this.x, this.saved}) : super(key: key);
   _HomeScreenState createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  bool x;
+ 
+  
   ScrollController _scrollController;
   bool _visible = true;
   String text = "Home";
   String url = "https://noveloreapi.herokuapp.com/first ";
+
   List<FirstData> firstlore = [];
+
   int firstlength;
   bool widget1 = false;
+  bool widget2 = false;
 
   @override
   void initState() {
+    x = this.widget.x;
     super.initState();
     this._getrequest();
     _scrollController = ScrollController();
@@ -59,26 +71,36 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future<List<FirstData>> _getrequest() async {
+    print("upper future");
+    print(x);
     // String Url = "https://noveloreapi.herokuapp.com/first";
-    var url =
-        Uri.https('noveloreapi.herokuapp.com', '/first/', {'q': '{http}'});
-    Response response = await http.get((url));
-    try {
-      var rb = response.body;
-      print(rb);
-      var list = jsonDecode(rb) as List;
+    if (!x) {
+      var url =
+          Uri.https('noveloreapi.herokuapp.com', '/first/', {'q': '{http}'});
+      Response response = await http.get((url));
+      try {
+        var rb = response.body;
 
-      List<FirstData> listvalues =
-          list.map((e) => FirstData.fromJson(e)).toList();
+        print(rb);
+        var list = jsonDecode(rb) as List;
 
-      setState(() {
-        firstlore.addAll(listvalues);
-        firstlength = listvalues.length;
-      });
-    } catch (err) {
-      print(err);
+        List<FirstData> listvalues =
+            list.map((e) => FirstData.fromJson(e)).toList();
+
+        setState(() {
+          firstlore.addAll(listvalues);
+          x = true;
+          widget2 = true;
+          firstlength = listvalues.length;
+          print("lower future");
+          print(x);
+        });
+      } catch (err) {
+        print(err);
+      }
+    } 
     }
-  }
+  
 
   _onTap(int index) {
     switch (index) {
@@ -100,7 +122,10 @@ class _HomeScreenState extends State<HomeScreen> {
       case 3:
         setState(() => Navigator.of(context)
                 .push(MaterialPageRoute<Null>(builder: (BuildContext context) {
-              return new HomeScreen();
+              return new HomeScreen(
+                x: true,
+                saved: firstlore,
+              );
             })));
         break;
 
@@ -118,9 +143,29 @@ class _HomeScreenState extends State<HomeScreen> {
     int homechecking = 0;
     double x = 22, y = 15;
     final orientation = MediaQuery.of(context).orientation;
+    print(widget.x);
+    if(widget.x){
+      setState(() {
+        print(widget.saved);
+        firstlore=widget.saved;
+      });
+    }
+    if (!widget.x) {
+      print(firstlore);
+      return AnimatedSplashScreen(
+        nextScreen: HomeScreen(
+          x: true,
+          saved: firstlore,
+        ),
+        splash: Image.asset("assets/images/emotion.png"),
+        splashTransition: SplashTransition.rotationTransition,
+        duration: 5000,
+        backgroundColor: Color(0xff392850),
+      );
+    }
 
-    if (firstlength != null) {
-      return GestureDetector(
+    return Center(
+      child: GestureDetector(
         onVerticalDragDown: (details) {
           r = rnd.nextInt(max - min);
         },
@@ -183,46 +228,24 @@ class _HomeScreenState extends State<HomeScreen> {
             width: double.infinity,
 
             //  /height: 500,
-            child:
-                // StaggeredGridView.countBuilder(
-                //   crossAxisCount: 4,
-                //   mainAxisSpacing: 150,
-                //   crossAxisSpacing: 20,
-                //   padding: EdgeInsets.symmetric(horizontal: 0,vertical: 10),
-                //   itemCount: 10,
-                //   itemBuilder:  (context, index) {
-                //        if (index != null) {
-                //          return Container(
-                //           child: listcard1(index, context),
-                //        );}
-                //          return Container(
-                //            child: Text("loading"),
-                //          );
-
-                //      },
-
-                //       staggeredTileBuilder: (int index) => new StaggeredTile.count(2, index.isEven ? 2:1),
-
-                // )
-
-                GridView.builder(
-                    itemCount: firstlength,
-                    scrollDirection: Axis.vertical,
-                    controller: _scrollController,
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount:
-                            (orientation == Orientation.portrait) ? 2 : 3,
-                        childAspectRatio: 0.55),
-                    itemBuilder: (context, index) {
-                      if (index != null) {
-                        return Container(
-                          child: listcard1(index, context),
-                        );
-                      }
-                      return Container(
-                        child: Text("loading"),
-                      );
-                    }),
+            child: GridView.builder(
+                itemCount: firstlength,
+                scrollDirection: Axis.vertical,
+                controller: _scrollController,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount:
+                        (orientation == Orientation.portrait) ? 2 : 3,
+                    childAspectRatio: 0.55),
+                itemBuilder: (context, index) {
+                  if (index != null) {
+                    return Container(
+                      child: listcard1(index, context),
+                    );
+                  }
+                  return Container(
+                    child: Text("loading"),
+                  );
+                }),
           ),
           extendBody: true,
           bottomNavigationBar: !_visible
@@ -232,14 +255,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: bottomnavigation(),
                 ),
         ),
-      );
-    }
-    return AnimatedSplashScreen(
-      nextScreen: HomeScreen(),
-      splash: Image.asset("assets/images/emotion.png"),
-      splashTransition: SplashTransition.rotationTransition,
-      duration: 5000,
-      backgroundColor: Color(0xff392850),
+      ),
     );
   }
 
@@ -247,10 +263,10 @@ class _HomeScreenState extends State<HomeScreen> {
     {
       List<String> img = firstlore[index].imgthmp.split("/");
       String img1 = img[0] + "//" + img[2] + "/public/" + img[3] + "/" + img[4];
+
       print(img1);
       print(index);
       return ReadingListCard(
-      
         id: firstlore[index].id,
         image: img1,
         title: firstlore[index].title,
@@ -319,7 +335,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     context,
                     MaterialPageRoute(builder: (context) {
                       homechecking = 0;
-                      return HomeScreen();
+                      return HomeScreen(
+                        x: true,
+                        saved: firstlore,
+                      );
                     }),
                   );
                 }
