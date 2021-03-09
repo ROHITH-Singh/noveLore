@@ -45,7 +45,7 @@ class ReadingListCard1 extends StatelessWidget {
                   image: AssetImage(image),
                   fit: BoxFit.fill,
                   colorFilter: new ColorFilter.mode(
-                    Colors.black.withOpacity(0.65), BlendMode.dstATop),
+                    Colors.black.withOpacity(0.2), BlendMode.dstATop),
                 ),
                 
                

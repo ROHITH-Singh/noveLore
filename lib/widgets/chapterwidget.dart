@@ -103,10 +103,10 @@ class Chapter_widget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: size.width - 48,
-      margin: EdgeInsets.only(bottom: 10, top: 5),
-      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 30),
+      margin: EdgeInsets.only(bottom: 5, top: 5),
+      padding: EdgeInsets.symmetric(vertical: 0, horizontal: 20),
       decoration: BoxDecoration(
-        color: Colors.white,
+         color: Colors.white,
         borderRadius: BorderRadius.circular(38.5),
         boxShadow: [
           BoxShadow(

@@ -28,21 +28,26 @@ Row detailpagecard1(BuildContext context,String id,
 
 
       return  Row(
-                           
                             children: [
                               Expanded(
                                 child: Column(
                                   
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(
+                                    Text( 
                                       title1,
                                       style: Theme.of(context)
                                           .textTheme
                                           .headline6
-                                          .copyWith(fontWeight: FontWeight.bold),
+                                          .copyWith(fontWeight: FontWeight.bold ,fontSize: 30), 
                                     ),
                                     SizedBox(height: 5,),
+                                     Text( '~~~ $author1',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headline6
+                                          .copyWith(fontWeight: FontWeight.bold ,fontSize: 15,), 
+                                    ),
                                     Row(
                                        crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
@@ -51,15 +56,17 @@ Row detailpagecard1(BuildContext context,String id,
                                             children: [
                                               Text(
                                                  description1,
-                                                style: TextStyle(
-                                                    fontSize: 9,
-                                                    color: kBlackcolor),
-                                                maxLines: 16,
+                                                style: TextStyle( 
+                                                  fontWeight: FontWeight.w400,
+                                                    fontSize: 12,
+                                                    // color: kBlackcolor
+                                                    color: Colors.black),
+                                                 maxLines: 30,
                                               ),
 
 
                                               SizedBox(
-                                                height: 5,
+                                                height: 20,
                                               ),
                                               
                                             ],
@@ -80,9 +87,8 @@ Row detailpagecard1(BuildContext context,String id,
                                   ],
                                 ),
                               ),
-                              ImageCard1(
-                                image: imgthmp1,
-                              )
+                             
+                              
                             ],
                           );
     }

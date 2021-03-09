@@ -82,12 +82,12 @@ class _DetailScreenState extends State<DetailScreen> {
                 children: [
                   Container(
                     
-                    height: size.height * .53,
+                    // height: size.height * .55,
                     width: double.infinity,
                     decoration: BoxDecoration(
                       
-                      image: DecorationImage(image: NetworkImage(img1),fit: BoxFit.fill,
-                      colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.7), BlendMode.dstOut)
+                      image: DecorationImage(image: NetworkImage(img1),fit: BoxFit.cover,
+                      colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.55), BlendMode.dstOut)
                       ),
                       gradient: LinearGradient(
                         begin: Alignment.topCenter,

@@ -107,13 +107,14 @@ class _ReadingListCardState extends State<ReadingListCard> {
                                 color: Color.fromRGBO(255, 255, 255, 1)),
                             children: [
                               TextSpan(
-                                text: " ${widget.title}\n",
+                                text: " ${widget.title}",
                                 style: TextStyle(
-                                  fontWeight: FontWeight.bold,
+                                  fontWeight: FontWeight.w700,
                                   fontSize: 20,
+                                  color: Colors.yellowAccent
                                 ),
                               ),
-                              TextSpan(text: widget.author),
+                              
                             ],
                           ),
                         ),
