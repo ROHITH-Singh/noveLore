@@ -40,7 +40,7 @@ class _DetailScreenState extends State<DetailScreen> {
     //     "https://noveloreapi.herokuapp.com/second/" + widget.id + "/size";
         var url1= Uri.https(
         'noveloreapi.herokuapp.com', '/second/' + widget.id+'/size', {'q': '{http}'});
-    print(url1);
+    // print(url1);
     Response response = await http.get(url);
     Response response1 = await http.get((url1));
     var rb = response.body;
@@ -56,9 +56,9 @@ class _DetailScreenState extends State<DetailScreen> {
 
     setState(() {
       secondlore.addAll(listvalues);
-      print(listvalues1);
+      // print(listvalues1);
       clength = listvalues1[0].chapterslength;
-      print("from inside setstate $clength");
+      // print("from inside setstate $clength");
     });
   }
 
@@ -70,8 +70,10 @@ class _DetailScreenState extends State<DetailScreen> {
     if (clength != null) {
       List<String> img = secondlore[0].imgthmp.split("/");
       String img1 = img[0] + "//" + img[2] + "/public/" + img[3] + "/" + img[4];
-      print("$clength");
+      // print("$clength");
       return Scaffold(
+        
+        backgroundColor: Color(0xfff0e7e6),
         
         
         body: SingleChildScrollView(
@@ -126,6 +128,8 @@ class _DetailScreenState extends State<DetailScreen> {
                 size: size,
                 clength: clength,
               ),
+              Padding(padding: EdgeInsets.only(bottom: 25),)
+
             ],
           ),
         ),

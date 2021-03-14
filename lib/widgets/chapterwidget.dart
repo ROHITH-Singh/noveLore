@@ -106,7 +106,15 @@ class Chapter_widget extends StatelessWidget {
       margin: EdgeInsets.only(bottom: 5, top: 5),
       padding: EdgeInsets.symmetric(vertical: 0, horizontal: 20),
       decoration: BoxDecoration(
-         color: Colors.white,
+        //  color: Colors.grey,
+         gradient: LinearGradient(
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+    colors: [
+      Color(0xffe8bbae),
+      Colors.white,
+    ],
+  ),
         borderRadius: BorderRadius.circular(38.5),
         boxShadow: [
           BoxShadow(

@@ -73,8 +73,8 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future<List<FirstData>> _getrequest() async {
-    print("upper future");
-    print(x);
+    // print("upper future");
+    // print(x);
     // String Url = "https://noveloreapi.herokuapp.com/first";
     if (!x) {
       var url =
@@ -83,7 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
       try {
         var rb = response.body;
 
-        print(rb);
+        // print(rb);
         var list = jsonDecode(rb) as List;
 
         List<FirstData> listvalues =
@@ -94,8 +94,8 @@ class _HomeScreenState extends State<HomeScreen> {
           x = true;
           widget2 = true;
           firstlength = listvalues.length;
-          print("lower future");
-          print(x);
+          // print("lower future");
+          // print(x);
         });
       } catch (err) {
         print(err);
@@ -142,15 +142,16 @@ class _HomeScreenState extends State<HomeScreen> {
     int homechecking = 0;
     double x = 22, y = 15;
     final orientation = MediaQuery.of(context).orientation;
-    print(widget.x);
+    // print(widget.x);
+    
     if (widget.x) {
       setState(() {
-        print(widget.saved);
+        // print(widget.saved);
         firstlore = widget.saved;
       });
     }
     if (!widget.x) {
-      print(firstlore);
+      // print(firstlore);
       return AnimatedSplashScreen(
         nextScreen: loading(x:true, saved:firstlore),
         //  HomeScreen(
@@ -283,8 +284,8 @@ class _HomeScreenState extends State<HomeScreen> {
       List<String> img = firstlore[index].imgthmp.split("/");
       String img1 = img[0] + "//" + img[2] + "/public/" + img[3] + "/" + img[4];
 
-      print(img1);
-      print(index);
+      // print(img1);
+      // print(index);
       return ReadingListCard(
         id: firstlore[index].id,
         image: img1,
@@ -296,7 +297,7 @@ class _HomeScreenState extends State<HomeScreen> {
             context,
             MaterialPageRoute(
               builder: (context) {
-                print(firstlore[index].id);
+                // print(firstlore[index].id);
                 return DetailScreen(id: firstlore[index].id);
               },
             ),

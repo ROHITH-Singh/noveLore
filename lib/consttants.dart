@@ -21,3 +21,14 @@ final kgradienttheme = BoxDecoration(
     0.85
   ], startAngle: 0.5, endAngle: 1),
 );
+
+final KchapterColor = BoxDecoration(
+  gradient: LinearGradient(
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+    colors: [
+      Color(0xffFC5d5b),
+      Colors.white,
+    ],
+  ),
+);
