@@ -14,6 +14,7 @@ import 'package:flutter/rendering.dart';
 import 'package:novel/models/FirstData.dart';
 import 'package:novel/screens/ProfilePage.dart';
 import 'package:novel/screens/favourite.dart';
+import 'package:novel/screens/loading.dart';
 
 import 'package:novel/screens/write.dart';
 import 'package:novel/widgets/hometime.dart';
@@ -40,8 +41,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   bool x;
- 
-  
+
   ScrollController _scrollController;
   bool _visible = true;
   String text = "Home";
@@ -100,9 +100,8 @@ class _HomeScreenState extends State<HomeScreen> {
       } catch (err) {
         print(err);
       }
-    } 
     }
-  
+  }
 
   _onTap(int index) {
     switch (index) {
@@ -144,89 +143,95 @@ class _HomeScreenState extends State<HomeScreen> {
     double x = 22, y = 15;
     final orientation = MediaQuery.of(context).orientation;
     print(widget.x);
-    if(widget.x){
+    if (widget.x) {
       setState(() {
         print(widget.saved);
-        firstlore=widget.saved;
+        firstlore = widget.saved;
       });
     }
     if (!widget.x) {
       print(firstlore);
       return AnimatedSplashScreen(
-        nextScreen: HomeScreen(
-          x: true,
-          saved: firstlore,
-        ),
-        splash: Image.asset("assets/images/emotion.png"),
+        nextScreen: loading(x:true, saved:firstlore),
+        //  HomeScreen(
+        //   x: true,
+        //   saved: firstlore,
+        // ),
+        splash: Image.asset("assets/images/loading.png"),
         splashTransition: SplashTransition.rotationTransition,
-        duration: 5000,
-        backgroundColor: Color(0xff392850),
+        duration: 4000,
+        backgroundColor: Color(0xffFC5d5b),
       );
     }
 
-    return Center(
+  {
+        return Center(
       child: GestureDetector(
         onVerticalDragDown: (details) {
           r = rnd.nextInt(max - min);
         },
         child: Scaffold(
           extendBodyBehindAppBar: true,
-        //  ,  
-        backgroundColor: Color(0xff392850),
-          
-          
-          appBar: !_visible?new AppBar(backgroundColor:Colors.transparent , elevation: 0.0,) : AppBar(
-            brightness: Brightness.light,
-            elevation: 0.0,
-            backgroundColor: Colors.transparent,
-            automaticallyImplyLeading: false,
-            title: Row(
-              children: [
-                TextButton(
-                  onPressed: () {
-                    if (homechecking == 1) {
-                      x = 22;
-                      y = 15;
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) {
-                          homechecking = 0;
-                          return HomeScreen();
-                        }),
-                      );
-                    }
-                    ;
-                  },
-                  child: Text("Home",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: x,
-                          fontWeight: FontWeight.w900)),
-                ),
-                TextButton(
-                  onPressed: () {
-                    if (homechecking == 0) {
-                      x = 15;
-                      y = 22;
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) {
-                          homechecking = 1;
-                          return SearchScreen(homechecking, x, y);
-                        }),
-                      );
-                    }
-                  },
-                  child: Text("  Search",
-                      style: TextStyle(
-                          color: Colors.white54,
-                          fontSize: y,
-                          fontWeight: FontWeight.w900)),
+          //  ,
+          backgroundColor: Color(0xffFC5d5b),
+
+          appBar: !_visible
+              ? new AppBar(
+                  backgroundColor: Colors.transparent,
+                  elevation: 0.0,
                 )
-              ],
-            ),
-            actions: [],
-          ),
+              : AppBar(
+                  brightness: Brightness.light,
+                  elevation: 0.0,
+                  backgroundColor: Colors.transparent,
+                  automaticallyImplyLeading: false,
+                  title: Row(
+                    children: [
+                      TextButton(
+                        onPressed: () {
+                          if (homechecking == 1) {
+                            x = 22;
+                            y = 15;
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) {
+                                homechecking = 0;
+                                return HomeScreen();
+                              }),
+                            );
+                          }
+                          ;
+                        },
+                        child: Text("Home",
+                            style: TextStyle(
+                                color: Color(0xFF191b28),
+                                fontSize: x,
+                                fontWeight: FontWeight.w900)),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          if (homechecking == 0) {
+                            x = 15;
+                            y = 22;
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) {
+                                homechecking = 1;
+                                return SearchScreen(homechecking, x, y);
+                              }),
+                            );
+                          }
+                        },
+                        child: Text("  Search",
+                            style: TextStyle(
+                                color: Colors.white54,
+                                fontSize: y,
+                                fontWeight: FontWeight.w900)),
+                      )
+                    ],
+                  ),
+                  actions: [],
+                ),
           body: Container(
             width: double.infinity,
             padding: EdgeInsets.symmetric(horizontal: 10),
@@ -260,7 +265,18 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
     );
+      
+    }
+// return Scaffold(
+//         backgroundColor: Color(0xffFC5d5b),
+//         body: Center(child: Text("check Connection ",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),),
+        
+//       );
+
+  
   }
+
+   
 
   ReadingListCard listcard1(int index, BuildContext context) {
     {
@@ -299,15 +315,33 @@ class _HomeScreenState extends State<HomeScreen> {
         elevation: 20,
         type: BottomNavigationBarType.fixed,
         items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(icon: Icon(Icons.home,size: 40,), label: "Home"),
+          BottomNavigationBarItem(
+              icon: Icon(
+                Icons.home,
+                size: 40,
+              ),
+              label: "Home"),
 
           BottomNavigationBarItem(
-              icon: Icon(Icons.favorite,size: 40,), label: "Favorite"),
+              icon: Icon(
+                Icons.favorite,
+                size: 40,
+              ),
+              label: "Favorite"),
 
           BottomNavigationBarItem(
-              icon: Icon(Icons.border_color,size: 40,), label: "write"),
+              icon: Icon(
+                Icons.border_color,
+                size: 40,
+              ),
+              label: "write"),
 
-          BottomNavigationBarItem(icon: Icon(Icons.person,size: 40,), label: "Profile"),
+          BottomNavigationBarItem(
+              icon: Icon(
+                Icons.person,
+                size: 40,
+              ),
+              label: "Profile"),
 
           // BottomNavigationBarItem(
           //   icon: Icon(Icons.settings),
@@ -322,7 +356,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget SearchScreen(int homechecking, double x, double y) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      backgroundColor: Color(0xff392850),
+      backgroundColor: Color(0xffFC5d5b),
       appBar: AppBar(
         elevation: 0.0,
         backgroundColor: Colors.transparent,
@@ -369,7 +403,7 @@ class _HomeScreenState extends State<HomeScreen> {
               },
               child: Text(" Search",
                   style: TextStyle(
-                      color: Colors.white,
+                      color: Color(0xFF191b28),
                       fontSize: y,
                       fontWeight: FontWeight.w900)),
             ),

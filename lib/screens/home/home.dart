@@ -38,7 +38,7 @@ class WelcomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return WillPopScope(
       child: Scaffold(
-        backgroundColor: Color(0xff392850),
+        backgroundColor: Color(0xffFC5d5b),
         body: Container(
           width: double.infinity,
 

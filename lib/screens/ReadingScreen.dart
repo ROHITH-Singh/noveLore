@@ -68,7 +68,7 @@ class _ReadingScreenState extends State<ReadingScreen> {
         secondary: Color(0xff66fff9),
         secondaryVariant: Color(0xff66fff9),
         surface: Color(0xff003366),
-        background: Color(0xff160c16),
+        background: Color(0xff191b28),
         error: Color(0xff9b374d),
         onPrimary: Colors.black,
         onSecondary: Colors.white,
@@ -100,7 +100,7 @@ class _ReadingScreenState extends State<ReadingScreen> {
                   if (_light)
                     x = Colors.white70;
                   else
-                    x = Color(0xff392850);
+                    x = Color(0xff191b28);
                 });
               },
               child: Icon(
@@ -131,14 +131,14 @@ class _ReadingScreenState extends State<ReadingScreen> {
       );
     } else {
       return AnimatedSplashScreen(
-        splash: Image.asset("assets/images/emotion.png"),
+        splash: Image.asset("assets/images/loading.png"),
         splashTransition: SplashTransition.rotationTransition,
         nextScreen: ReadingScreen(
           id: widget.id,
           index: widget.index,
         ),
-        duration: 7000,
-        backgroundColor: Color(0xff392850),
+        // duration: 1000,
+        backgroundColor: Color(0xfffc5d5b),
       );
     }
   }

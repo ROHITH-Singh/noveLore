@@ -87,13 +87,13 @@ class _DetailScreenState extends State<DetailScreen> {
                     decoration: BoxDecoration(
                       
                       image: DecorationImage(image: NetworkImage(img1),fit: BoxFit.cover,
-                      colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.55), BlendMode.dstOut)
+                      colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.5), BlendMode.dstOut)
                       ),
                       gradient: LinearGradient(
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,
                         colors: [
-                          Color(0xff392850),
+                         Color(0xffFC5d5b),
                           Colors.white,
                         ],
                       ),
@@ -134,10 +134,10 @@ class _DetailScreenState extends State<DetailScreen> {
       return AnimatedSplashScreen(
         nextScreen: DetailScreen(id: widget.id),
 
-        splash: Image.asset("assets/images/emotion.png"),
+        splash: Image.asset("assets/images/loading.png"),
         splashTransition: SplashTransition.rotationTransition,
-        // duration: 7000,
-        backgroundColor: Color(0xff392850),
+         duration: 3000,
+        backgroundColor: Color(0xffFC5d5b),
       );
     }
   }

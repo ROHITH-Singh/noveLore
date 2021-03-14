@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart ';
 import 'package:novel/consttants.dart';
 // import 'package:novel/widgets/book_ratings.dart';
@@ -40,11 +41,17 @@ class _ReadingListCardState extends State<ReadingListCard> {
     var IconColor = Colors.white;
     
         return GestureDetector(
+          
          
         onTap: widget.pressRead,
-        child: Container(
-          height:MediaQuery.of((context)).size.height /4 ,
-          margin: EdgeInsets.only(bottom: 20, left: 5, top: 0, right: 5),
+        child:  Column(
+          
+          
+          children: [
+           Container(
+          // height:MediaQuery.of((context)).size.height/5,
+          height: 150,
+          margin: EdgeInsets.only(bottom: 0, left: 5, top: 0 , right: 5),
         
         
           child: Stack(
@@ -53,8 +60,8 @@ class _ReadingListCardState extends State<ReadingListCard> {
             children: [
               Positioned(
                 child: Container(
-                  alignment: Alignment.topCenter,
-                  
+                  // alignment: Alignment.topCenter,
+                  // margin: EdgeInsets.only(bo),
                   height: MediaQuery.of((context)).size.height /2  ,
                   
                   
@@ -63,7 +70,7 @@ class _ReadingListCardState extends State<ReadingListCard> {
                       image: NetworkImage(widget.image),
                       fit: BoxFit.fill,
                       colorFilter: new ColorFilter.mode(
-                          Colors.black.withOpacity(0.9), BlendMode.dstATop),
+                          Colors.black.withOpacity(0.99), BlendMode.dstATop),
                     ),
                     borderRadius: BorderRadius.circular(40),
                     boxShadow: [
@@ -88,17 +95,23 @@ class _ReadingListCardState extends State<ReadingListCard> {
                   ],
                 ),
               ),
-                  Positioned(
-                    left: 5,
-                top: 50,
-                child: Container(
-                  alignment: Alignment(0,3),
-                  height: 200,
-                  width: 100,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SizedBox(
+            ],)
+                ),
+              ),
+              
+            ],
+          ),
+        ),
+
+        //  Positioned(
+       
+        Expanded(
+              child:
+         Container(
+            // margin: EdgeInsets.only(),
+                  // color: Color(0xff191b26),
+                  child:SizedBox(
+                    
                         // padding: EdgeInsets.only(left: 2),
                         child: RichText(
                           textAlign: TextAlign.center,
@@ -110,37 +123,35 @@ class _ReadingListCardState extends State<ReadingListCard> {
                                 text: " ${widget.title}",
                                 style: TextStyle(
                                   fontWeight: FontWeight.w700,
-                                  fontSize: 20,
-                                  color: Colors.yellowAccent
+                                  fontSize: 18,
+                                  color: Color(0xff191b26)
                                 ),
                               ),
                               
                             ],
                           ),
-                        ),
+                       
                       ),
                      
-                    ],
+                    
                   ),
                 ),
-              )
+              // )
+         ),
 
+        SizedBox(height: 20,)
+            
+]),
+          
 
+        //   ],)
 
-
-
-
-            ],)
-
-
-
-
-
-                ),
-              ),
-              
-            ],
-          ),
-        ));
+         
+        
+        
+       
+        
+        
+        );
   }
 }
